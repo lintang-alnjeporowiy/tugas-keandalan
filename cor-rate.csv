@@ -1,0 +1,14 @@
+Structure element,μ (a) [mm/years],CoV (a),index
+Outer bottom plate,0.0597,0.9901,OPB
+Outer bottom stiffener's web,0.1367,0.7802,SBW
+Outer bottom stiffener's flange,0.1127,1.0121,SBF
+Inner bottom plate,0.1012,0.7994,IPB
+Inner bottom stiffener's web,0.1960,0.9993,ISW
+Inner bottom stiffener's flange,0.1782,0.9941,ISF
+Inner bottom hat plate,0.0597,0.9901,ISH
+Deck plate,0.0581,0.8262,DP
+Deck stiffener's web,0.0716,0.8902,DPW
+Deck stiffener's flange,0.0588,1.003,DPF
+Deck hat plate,0.0581,0.8262,DHP
+Sekat Long Web,0.0716,0.8902,SLW
+Sekat Long flange,0.0588,1.003,SLF

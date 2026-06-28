@@ -1,0 +1,9 @@
+| Parameter  |                     Nilai |
+| ---------- | ------------------------: |
+| (H_s)      |                     2.3 m |
+| (T_p)      |                   13.78 s |
+| (f_p)      |                 0.0726 Hz |
+| (\omega_p) |               0.456 rad/s |
+| (\alpha)   |                    0.0081 |
+| (\gamma)   |             3.3 (praktis) |
+| (\gamma)   | 5.0 (hasil rumus empiris) |

@@ -1,0 +1,5 @@
+revisi lanjutan
+
+urgent : untuk saaat perata-rata an wave bending moment -> seharusnya dilakukan dalam nilai absolut karena kalau nilai minus gelombabng ditambaha dengawn postitf hasilnay pasti mendekati nol.
+
+akan ada banuak variasi gelombang untuk

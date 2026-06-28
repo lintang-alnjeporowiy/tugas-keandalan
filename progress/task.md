@@ -1,0 +1,11 @@
+- [x] Create the initial implementation plan and get user approval
+- [x] Correct the wave bending moment (WBM) statistic calculation (use absolute values before taking averages)
+- [x] Standardize load combination with the constant variable `swbm_ship` (120,000 kNm) and the vertical static max SWBM
+- [x] Save scantlings tables including width ($b$) and height ($h$) at years 0, 10, 20, 30, and export as CSV
+- [x] Map ultimate strength CoV to the new yield strength target of 250 MPa to derive yield standard deviation
+- [x] Implement the loop structure for 24 variations (3 heights x 2 directions x 4 time steps)
+- [x] Omit ultimate strength graphics to keep the notebook concise
+- [x] Create yield strength reliability curves comparing all 6 configurations over 30 years
+- [x] Implement JPDF grids at year 0, 10, 20, 30 for the critical height ($H_s = 2.58$ m) in both wave directions
+- [x] Generate and execute the updated `main.ipynb` successfully using nbconvert
+- [x] Verify results and export final summary and walkthrough artifacts
