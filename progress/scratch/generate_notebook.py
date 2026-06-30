@@ -73,17 +73,17 @@ notebook = {'cells': [{'cell_type': 'markdown',
                        '\n',
                        '# Definisikan 6 variasi gelombang\n',
                        'wave_cases = [\n',
-                       '    {"file": "wbm/Hs-1.73_D-180.csv", "Hs": 1.73, "D": 180, "column": "Momen Vertikal '
+                       '    {"file": "wbm/Hs-1.73_D-180.csv", "Hs": 2.58, "D": 180, "column": "Momen Vertikal '
                        '(N.m)"},\n',
-                       '    {"file": "wbm/Hs-1.73_D-90.csv", "Hs": 1.73, "D": 90, "column": "Momen Horizontal '
+                       '    {"file": "wbm/Hs-1.73_D-90.csv", "Hs": 2.58, "D": 90, "column": "Momen Horizontal '
                        '(N.m)"},\n',
                        '    {"file": "wbm/Hs-2.16_D-180.csv", "Hs": 2.16, "D": 180, "column": "Momen Vertikal '
                        '(N.m)"},\n',
                        '    {"file": "wbm/Hs-2.16_D-90.csv", "Hs": 2.16, "D": 90, "column": "Momen Horizontal '
                        '(N.m)"},\n',
-                       '    {"file": "wbm/Hs-2.58_D-180.csv", "Hs": 2.58, "D": 180, "column": "Momen Vertikal '
+                       '    {"file": "wbm/Hs-2.58_D-180.csv", "Hs": 1.73, "D": 180, "column": "Momen Vertikal '
                        '(N.m)"},\n',
-                       '    {"file": "wbm/Hs-2.58_D-90.csv", "Hs": 2.58, "D": 90, "column": "Momen Horizontal '
+                       '    {"file": "wbm/Hs-2.58_D-90.csv", "Hs": 1.73, "D": 90, "column": "Momen Horizontal '
                        '(N.m)"},\n',
                        ']\n',
                        '\n',
@@ -660,7 +660,7 @@ notebook = {'cells': [{'cell_type': 'markdown',
                        '        # Failure Probability (Pf) - Analitis\n',
                        '        pf_analytical = norm.cdf(-beta)\n',
                        '        \n',
-                       '        # Failure Probability (Pf) - Konvolusi Numerik\n',
+                       '        # Failure Probability (Pf) - Konvolusi Numerik (Normal-Normal) -> Level 3\n',
                        '        integrand = lambda x: norm.pdf(x, mu_sigma_L, sigma_sigma_L) * norm.cdf(x, mu_Y_yield, '
                        'std_Y_yield)\n',
                        '        limit_low = mu_sigma_L - 8 * sigma_sigma_L\n',
@@ -783,7 +783,47 @@ notebook = {'cells': [{'cell_type': 'markdown',
                        'print("=== JPDF OVERLAY FOR HS = 2.58 M, D = 180° (HEAD WAVE) ===")\n',
                        'plot_jpdf_grid(2.58, 180)\n',
                        'print("\\n=== JPDF OVERLAY FOR HS = 2.58 M, D = 90° (BEAM WAVE) ===")\n',
-                       'plot_jpdf_grid(2.58, 90)']}],
+                       'plot_jpdf_grid(2.58, 90)']},
+           {'cell_type': 'markdown',
+            'id': 'reliability-level3-summary-intro',
+            'metadata': {},
+            'source': ['## 5. Ringkasan Keandalan Level 3 (Yield Strength)\n',
+                       'Berikut adalah ringkasan indeks keandalan, Safety Factor (FoS), dan peluang kegagalan ($P_f$) '
+                       'menggunakan integral konvolusi Level 3 untuk masing-masing tahun pemantauan (Tahun 0, 10, 20, '
+                       'dan 30).']},
+           {'cell_type': 'code',
+            'execution_count': None,
+            'id': 'reliability-level3-summary',
+            'metadata': {},
+            'outputs': [],
+            'source': ['# Tampilkan ringkasan tabel keandalan untuk masing-masing tahun\n',
+                       'def format_pf_friendly(val):\n',
+                       '    if val < 1e-30:\n',
+                       '        return "0"\n',
+                       '    s = f"{val:.1e}"\n',
+                       "    base, exponent = s.split('e')\n",
+                       "    if '.' in base:\n",
+                       "        base = base.rstrip('0').rstrip('.')\n",
+                       '    exponent = int(exponent)\n',
+                       '    return f"{base} x 10^{exponent}"\n',
+                       '\n',
+                       'for t in ages:\n',
+                       "    df_year = df_rel_yield[df_rel_yield['Age (years)'] == t].copy()\n",
+                       '    df_display = df_year[[\n',
+                       "        'Hs (m)', 'D (deg)', 'FoS', 'Beta', 'Pf_numerical'\n",
+                       '    ]].copy()\n',
+                       '    df_display.columns = [\n',
+                       "        'Ketinggian Gelombang', 'Arah Gelombang', 'FoS', 'Safety Index (Beta)', 'Peluang "
+                       "Kegagalan'\n",
+                       '    ]\n',
+                       '    # Format untuk visualisasi tabel\n',
+                       '    df_display[\'FoS\'] = df_display[\'FoS\'].map(lambda x: f"{x:.4f}")\n',
+                       "    df_display['Safety Index (Beta)'] = df_display['Safety Index (Beta)'].map(lambda x: "
+                       'f"{x:.4f}")\n',
+                       "    df_display['Peluang Kegagalan'] = df_display['Peluang "
+                       "Kegagalan'].map(format_pf_friendly)\n",
+                       '    print(f"\\n=== TABEL RINGKASAN KEANDALAN LEVEL 3 (YIELD STRENGTH): TAHUN {t} ===")\n',
+                       '    display(df_display)']}],
  'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'},
               'language_info': {'codemirror_mode': {'name': 'ipython', 'version': 3},
                                 'file_extension': '.py',
